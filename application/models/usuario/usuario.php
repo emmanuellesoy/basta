@@ -54,7 +54,7 @@ class Usuario extends CI_Model {
         
         if($consulta->num_rows() > 0){
             
-            $registrado = FALSE;
+            $registrado = 0;
             
         } else {
             
@@ -62,7 +62,7 @@ class Usuario extends CI_Model {
             
             $consulta = $this->db->query($sql, array($usr, md5($passwd)));
             
-            $registrado = TRUE;
+            $registrado = 1;
             
         }
         

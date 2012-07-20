@@ -22,17 +22,15 @@ class Amigos_model extends CI_Model {
 
                 $results[] = $row;
                 
-                return json_encode($results);
-                
             }
             
         } else {
             
-            $results = 'Aun no has agregado amigos.';
-            
-            return $results;
+            $results = 0;
             
         }
+        
+        return json_encode($results);
         
     }
 
