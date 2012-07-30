@@ -23,6 +23,8 @@ class Welcome extends CI_Controller {
         
         public function autenticar($usr, $passwd){
             
+            $this->load->model('usuario/usuario', 'usr', TRUE);
+            
             $usr = 'shannonbit';
             
             $passwd = 'hola';
@@ -35,9 +37,21 @@ class Welcome extends CI_Controller {
         
         public function registrar_usuario($usr, $passwd){
             
+            $this->load->model('usuario/usuario', 'usr', TRUE);
+            
             $data = $this->usr->registrar_usuario($usr, $passwd);
             
             return $data;
+            
+        }
+        
+        public function buscar_usuario($nombre_usuario){
+            
+            $this->load->model('usuario/usuario', 'usr', TRUE);
+            
+            $data = $this->usr->get_user($nombre_usuario);
+            
+            print_r($data);
             
         }
                 

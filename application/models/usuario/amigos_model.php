@@ -33,6 +33,12 @@ class Amigos_model extends CI_Model {
         return json_encode($results);
         
     }
+    
+    public function peticiones_amigos(){
+        
+        $sql = 'SELECT usr_';
+        
+    }
 
 }
 

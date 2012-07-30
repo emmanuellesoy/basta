@@ -22,6 +22,30 @@ class Usuario extends CI_Model {
     
     }
     
+    function get_user($nombre_usuario){
+        
+        $this->db->like('nombre_usuario', $nombre_usuario);
+        
+        $consulta = $this->db->get('usuarios');
+        
+        if($consulta->num_rows() > 0){
+            
+            foreach ($consulta->result_array() as $row) {
+
+               $results[$row['usuario_id']] = $row;
+            
+            }
+        
+        } else {
+            
+            $results = 'UPS! El usuario que buscaste no existe.';
+            
+        }
+        
+            return json_encode($results);
+            
+    }
+    
     public function auntenticar($usr, $passwd){
         
         $sql = 'SELECT usuario_id FROM usuarios WHERE nombre_usuario = ? AND passwd = ? ';
