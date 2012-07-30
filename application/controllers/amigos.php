@@ -19,17 +19,11 @@ class Amigos extends CI_Controller {
             
         }
         
-        public function obtener_amigos($usr_id, $usr, $passwd){
+        public function obtener_amigos($usr_id){
             
-            $autenticado = $this->autenticar_usuario($usr, $passwd);
-            
-            if($autenticado == 1){
-                
                 $this->load->model('usuario/amigos_model', 'amg', TRUE);
                 
                 $amigos = $this->amg->obtener_amigos($usr_id);
-                
-            }
             
             echo $amigos;
             
@@ -61,7 +55,7 @@ class Amigos extends CI_Controller {
             
             $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id);
             
-            if($aceptar = 1){
+            if($aceptar == 1){
                 
                 $this->amg->agregar_amigo($usuario_id, $remitente_usr_id);
                 
