@@ -34,9 +34,66 @@ class Amigos_model extends CI_Model {
         
     }
     
-    public function peticiones_amigos(){
+    public function peticiones_amigos($usr_id){
         
-        $sql = 'SELECT usr_';
+        $this->db->select('remitente_usr_id, estado');
+        
+        $this->db->from('peticiones_amigos');
+        
+        $this->db->where(array('destinatario_usr_id' => $usr_id, 'estado' => 0));
+        
+        $consulta = $this->db->get();
+        
+        if($consulta->num_rows() != 0){
+            
+            foreach ($consulta->result_array() as $row) {
+
+                $results[] = $row;
+                
+            }
+            
+        } else {
+            
+            $results = 0;
+            
+        }
+        
+        return json_encode($results);
+        
+    }
+    
+    public function peticiones_leidas($destinatario_usr_id, $remitente_usr_id){
+            
+            $data = array('estado' => 1);
+
+            $this->db->where(array('remitente_usr_id' => $remitente_usr_id, 'destinatario_usr_id' => $destinatario_usr_id));
+           
+            $this->db->update('peticiones_amigos', $data);
+            
+        }
+        
+        public function agregar_amigo($usuario_id, $remitente_usr_id){
+            
+            $data = array(
+                'usr_id_1' => $usuario_id,
+                'usr_id_2' => $remitente_usr_id ,
+                'estado' => 1
+            );
+
+            $this->db->insert('amigos', $data); 
+            
+        }
+
+
+        public function hacer_peticion($destinatario_usr_id, $remitente_usr_id){
+        
+        $data = array(
+            'remitente_usr_id' => $remitente_usr_id ,
+            'destinatario_usr_id' => $destinatario_usr_id ,
+            'estado' => '0'
+        );
+
+        $this->db->insert('peticiones_amigos', $data); 
         
     }
 

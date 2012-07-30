@@ -34,6 +34,40 @@ class Amigos extends CI_Controller {
             echo $amigos;
             
         }
+        
+        public function peticiones($usr_id){
+            
+            $this->load->model('usuario/amigos_model', 'amg', TRUE);
+            
+            $this->load->model('usuario/usuario', 'usr', TRUE);
+            
+            $peticiones = $this->amg->peticiones_amigos($usr_id);
+            
+            print_r($peticiones);
+            
+        }
+        
+        public function agregar_amigo($destinatario_usr_id, $remitente_usr_id){
+        
+            $this->load->model('usuario/amigos_model', 'amg', TRUE);
+
+            $hacer_peticion = $this->amg->hacer_peticion($destinatario_usr_id, $remitente_usr_id);
+
+        }
+        
+        public function peticion_leida($usuario_id, $remitente_usr_id, $aceptar){
+            
+            $this->load->model('usuario/amigos_model', 'amg', TRUE);
+            
+            $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id);
+            
+            if($aceptar = 1){
+                
+                $this->amg->agregar_amigo($usuario_id, $remitente_usr_id);
+                
+            }
+            
+        }
                 
 }
 
