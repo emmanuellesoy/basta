@@ -31,7 +31,7 @@ class Welcome extends CI_Controller {
             
             $data = $this->usr->auntenticar('shannonbit', 'hola');
             
-            return $data;
+            print_r($data);
             
         }
         
@@ -41,7 +41,7 @@ class Welcome extends CI_Controller {
             
             $data = $this->usr->registrar_usuario($usr, $passwd);
             
-            return $data;
+            print_r($data);
             
         }
         
