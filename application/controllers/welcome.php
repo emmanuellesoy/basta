@@ -25,11 +25,7 @@ class Welcome extends CI_Controller {
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
-            $usr = 'shannonbit';
-            
-            $passwd = 'hola';
-            
-            $data = $this->usr->auntenticar('shannonbit', 'hola');
+            $data = $this->usr->auntenticar($usr, $passwd);
             
             print_r($data);
             
