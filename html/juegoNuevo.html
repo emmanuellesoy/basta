@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Basta!</title> 
+        <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="themes/basta.css" />
+        <link rel="stylesheet" href="themes/jquery.mobile.structure-1.1.0.min.css" />
+        <link rel="stylesheet" href="themes/styles.css" />
+        <script src="js/jquery-1.7.2.min.js"></script>
+        <script src="js/jquery.mobile-1.1.0.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="inline">
+            <a href="menuPrincipal.html" data-icon="flechaIzquierda" class="principal_btn">PRINCIPAL</a>
+            <h1>NUEVO JUEGO</h1>
+        </div>
+
+	<div data-role="content" data-theme="a">
+            <div data-role="collapsible" data-collapsed="false" data-theme="a">
+                <h3>ALGUIEN QUIERE JUGAR CONTIGO</h3>
+                <ul data-role="listview" data-theme="a" data-inset="true">
+                    <li data-icon="paloma">
+                        <a href="?">
+                            <h1>USUARIO 1</h1>
+                            <p class="ui-li-aside">ESP</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <select name="select-choice-0" id="select-choice-1" data-icon="flechaAbajo">
+                <option value="none" selected="selected" disabled="disabled">IDIOMA</option>
+                <option value="esp">ESPAÑOL</option>
+                <option value="eng">INGLÉS</option>
+            </select>
+            <a href="categorias.html" data-role="button" data-icon="flechaDerecha" data-iconpos="right">CATEGORIAS</a>
+            <input type="text" placeholder="INVITAR A JUGADOR" />
+            <input type="submit" value="JUGAR" />
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

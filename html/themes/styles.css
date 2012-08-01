@@ -1,0 +1,56 @@
+@font-face{
+font-family: Bangers;
+src: url('../fonts/Bangers.ttf');
+}
+*{
+    font-family: Bangers;
+    text-shadow: none;
+}
+.ui-content, .ui-body, .ui-page, .ui-page-active{
+    background-color: transparent;
+}
+.ui-icon-flechaDerecha{
+	background-image: url("../img/flechaDerecha.svg");
+        background-size: 36px 36px;
+        padding: 10px;
+}
+.ui-icon-flechaAbajo{
+    background-image: url("../img/flechaAbajo.svg");
+        background-size: 36px 36px;
+        padding: 10px;
+}
+.ui-icon-flechaIzquierda{
+    background-image: url("../img/flechaIzquierda.svg");
+}
+.ui-icon-paloma{
+    background-image: url("../img/paloma.svg");
+    background-size: 36px 36px;
+    padding: 10px;
+}
+.ui-li-aside{
+    font-size: 28px;
+    padding-right: 36px;
+}
+.ui-collapsible-heading{
+    font-size: 28px;
+}
+.ui-li-heading{
+    font-size: 28px;
+}
+.ui-header .ui-title, .ui-footer .ui-title{
+    font-size: 36px;
+}
+input.ui-input-text, textarea.ui-input-text {
+    background-color: #c83737;
+    color: #a02c2c;
+    text-shadow: none;
+    font-size: 28px;
+    font-family: Bangers;
+ }
+ .principal_btn {
+    border-radius: 0px 4px 4px 0px;
+    padding-left: 0px;
+    background-color: #000;
+    border-color: #ffcf00;
+    text-shadow: none;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Basta!</title> 
+        <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="themes/basta.css" />
+        <link rel="stylesheet" href="themes/jquery.mobile.structure-1.1.0.min.css" />
+        <link rel="stylesheet" href="themes/styles.css" />
+        <script src="js/jquery-1.7.2.min.js"></script>
+        <script src="js/jquery.mobile-1.1.0.min.js"></script>
+        <script src="js/usuarios.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header">
+		<h1>BASTA!</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+            <form action="?" method="post" id="autenticar">
+                <input type="text" name="usuario" id="usuario" placeholder="USUARIO" autofocus />
+                <input type="password" name="contrasena" id="contrasena" placeholder="CONTRASEÑA" />
+                <input type="button" id="boton" onclick="autenticar()" value="INICIAR SESIÓN" />
+            </form>
+            <hr>
+            <form action="?" method="post">
+                <center>
+                	<label for="registrate">¿AÚN NO TIENES CUENTA?</label>
+                </center>
+                <input type="submit" name="registrate" id="registrate" value="REGÍSTRATE" />
+            </form>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

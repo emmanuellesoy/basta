@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Basta!</title> 
+        <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="themes/basta.css" />
+        <link rel="stylesheet" href="themes/jquery.mobile.structure-1.1.0.min.css" />
+        <link rel="stylesheet" href="themes/styles.css" />
+        <script src="js/jquery-1.7.2.min.js"></script>
+        <script src="js/jquery.mobile-1.1.0.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header">
+            <a href="menuPrincipal.html">PRINCIPAL</a>
+		<h1>BASTA!</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+                <form action="?" method="post">
+                    <div data-role="fieldcontain" class="ui-hide-label">
+                        <select name="select-choice-0" id="select-choice-1" data-mini="true">
+                            <option value="esp" disabled="true" selected="selected">IDIOMA</option>
+                            <option value="esp">ESPAÑOL</option>
+                            <option value="eng">INGLÉS</option>
+                        </select>
+                    </div>
+                    <input type="submit" name="idioma" id="idioma" value="LISTO!" data-mini="true"/>
+                </form>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Basta!</title> 
+        <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="themes/basta.css" />
+        <link rel="stylesheet" href="themes/jquery.mobile.structure-1.1.0.min.css" />
+        <link rel="stylesheet" href="themes/styles.css" />
+        <script src="js/jquery-1.7.2.min.js"></script>
+        <script src="js/jquery.mobile-1.1.0.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-theme="a">
+            <a href="menuPrincipal.html">PRINCIPAL</a>
+		<h1>Basta!</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+            <label for="flip-a">SONIDO</label>
+            <select name="sonidos" id="sonido" data-role="slider">
+                    <option value="off">SI</option>
+                    <option value="on">No</option>
+            </select>
+            <br />
+            <label for="flip-a">NOTIFICACIONES</label>
+            <select name="notificaciones" id="notificaciones" data-role="slider">
+                <option value="off">SI</option>
+                <option value="on">No</option>
+            </select> 
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>
