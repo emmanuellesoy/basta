@@ -9,7 +9,11 @@ class Amigos extends CI_Controller {
             $this->load->view('welcome_message');
 	}
         
-        public function autenticar_usuario($usr, $passwd){
+        public function autenticar_usuario(){
+            
+            $usr = $this->input->post('usuario');
+            
+            $passwd = $this->input->post('contrasena');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
