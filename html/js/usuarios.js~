@@ -55,12 +55,17 @@ function autenticar(){
 	
 	var pass = $('#contrasena').val();
 	
-	var uri = 'http://localhost/hackbb1/ci_basta/index.php/welcome/autenticar/'+usuario+'/'+pass;
+	var uri = "http://turing.izt.uam.mx/basta/index.php/welcome/autenticar/"+usuario+"/"+pass;
 	
-	alert(uri);
+	//alert(uri);
 	
-	$.post(uri, $("#autenticar").serialize(), function(data) {
-		alert(data);
-	});
+	$.ajax({
+            url: uri,
+            success: function(data){
+                var json = jQuery.parseJSON(data);
+                alert(json);
+                //$('p').html(json.nombre);
+            }
+    });
 	
 }
