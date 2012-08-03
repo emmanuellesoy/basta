@@ -11,11 +11,11 @@ class Amigos extends CI_Controller {
         
         public function obtener_amigos(){
             
-            $usr_id = $this->input->post('id_usuario');
+            $usr_id = $this->input->get('id_usuario');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
                 
-            $data = $this->amg->obtener_amigos($usr_id);
+            $data = $this->amg->obtener_amigos_model($usr_id);
             
             if(isset($_GET['callback'])){
                 
@@ -31,7 +31,7 @@ class Amigos extends CI_Controller {
         
         public function peticiones(){
             
-            $usr_id = $this->input->post('id_usuario');
+            $usr_id = $this->input->get('id_usuario');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
             
@@ -53,9 +53,9 @@ class Amigos extends CI_Controller {
         
         public function agregar_amigo(){
             
-            $destinatario_usr_id = $this->input->post('id_destinatario');
+            $destinatario_usr_id = $this->input->get('id_destinatario');
             
-            $remitente_usr_id = $this->input->post('id_remitente');
+            $remitente_usr_id = $this->input->get('id_remitente');
         
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
 
@@ -75,15 +75,15 @@ class Amigos extends CI_Controller {
         
         public function peticion_leida(){
             
-            $usuario_id = $this->input->post('id_usuario');
+            $usuario_id = $this->input->get('id_usuario');
             
-            $remitente_usr_id = $this->input->post('id_remitente');
+            $remitente_usr_id = $this->input->get('id_remitente');
             
-            $aceptar = $this->input->post('aceptar');
+            $aceptar = $this->input->get('aceptar');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
             
-            $data = $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id);
+            $data = $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id, $aceptar);
             
             if($aceptar == 1){
                 

@@ -44,13 +44,13 @@ class Welcome extends CI_Controller {
         
         public function registrar_usuario(){
             
-            $usr = $this->input->post('usuario');
+            $usr = $this->input->get('usuario');
             
-            $passwd = $this->input->post('contrasena');
+            $passwd = $this->input->get('contrasena');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
-            $data = $this->usr->registrar_usuario($usr, $passwd);
+            $data = $this->usr->registrar_usuario_model($usr, $passwd);
             
             if(isset($_GET['callback'])){
                 
@@ -66,7 +66,7 @@ class Welcome extends CI_Controller {
         
         public function buscar_usuario(){
             
-            $nombre_usuario = $this->input->post('nombre_usuario');
+            $nombre_usuario = $this->input->get('nombre_usuario');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             

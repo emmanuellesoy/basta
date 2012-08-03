@@ -74,23 +74,31 @@ class Usuario extends CI_Model {
         
     }
     
-    public function registrar_usuario($usr, $passwd){
+    public function registrar_usuario_model($usr, $passwd){
         
-        $sql = 'SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = ?';
+        $this->db->where('nombre_usuario', $usr);
         
-        $consulta = $this->db->query($sql, array($usr));
+        $this->db->select('nombre_usuario'); 
         
-        if($consulta->num_rows() > 0){
+        $consulta = $this->db->get('usuarios');
+        
+        foreach ($consulta->result_array() as $row) {
+
+               $registrado[] = $row;
             
-            $registrado['mensaje'] = 'usuario_existente';
-            
-        } else {
+            }
+        
+        if($consulta->num_rows() == 0){
             
             $sql = 'INSERT INTO usuarios (nombre_usuario, passwd) VALUES (?, ?)';
             
             $consulta = $this->db->query($sql, array($usr, md5($passwd)));
             
             $registrado['mensaje'] = 'ok';
+            
+        } else {
+            
+            $registrado['mensaje'] = 'usuario_existente';
             
         }
         
