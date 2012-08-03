@@ -12,13 +12,11 @@ class Amigos_model extends CI_Model {
     
     public function obtener_amigos_model($usr_id){
         
-        $this->db->select('usr_id_1, usr_id_2');
+        $this->db->select('usr_id_2');
         
         $this->db->from('amigos');
         
         $this->db->where('usr_id_1', $usr_id);
-        
-        $this->db->or_where('usr_id_1', $usr_id);
         
         $this->db->where('estado', 1);
         
@@ -103,12 +101,11 @@ class Amigos_model extends CI_Model {
         public function agregar_amigo($usuario_id, $remitente_usr_id){
             
             $data = array(
-                'usr_id_1' => $usuario_id,
-                'usr_id_2' => $remitente_usr_id ,
-                'estado' => 1
+                array('usr_id_1' => $usuario_id, 'usr_id_2' => $remitente_usr_id, 'estado' => 1),
+                array('usr_id_2' => $usuario_id, 'usr_id_1' => $remitente_usr_id, 'estado' => 1)
             );
 
-            $consulta = $this->db->insert('amigos', $data);
+            $consulta = $this->db->insert_batch('amigos', $data);
             
             if($consulta){
                 

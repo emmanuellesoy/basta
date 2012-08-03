@@ -22,6 +22,40 @@ class Usuario extends CI_Model {
     
     }
     
+    function get_users_by_id($ids){
+        
+        $this->db->select('usuario_id, nombre_usuario');
+        
+        $this->db->from('usuarios');
+        
+        foreach($ids as $id){
+            
+            $this->db->or_where('usuario_id', $id['usr_id_2']);
+            
+        }
+        
+        $consulta = $this->db->get();
+        
+        if($consulta->num_rows() > 0){
+            
+            foreach ($consulta->result_array() as $row) {
+
+                $results[$row['usuario_id']] = $row;
+            
+            }
+            
+            $results['mensaje'] = 'ok';
+        
+        } else {
+            
+            $results['mensaje'] = 'vacio';
+            
+        }
+        
+            return $results;
+        
+    }
+    
     function get_user($nombre_usuario){
         
         $this->db->like('nombre_usuario', $nombre_usuario);

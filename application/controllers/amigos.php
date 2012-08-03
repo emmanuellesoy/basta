@@ -15,7 +15,15 @@ class Amigos extends CI_Controller {
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
                 
-            $data = $this->amg->obtener_amigos_model($usr_id);
+            $ids = $this->amg->obtener_amigos_model($usr_id);
+            
+            if($ids['mensaje'] == 'ok'){
+                
+                $this->load->model('usuario/usuario', 'usr', TRUE);
+            
+                $data = $this->usr->get_users_by_id($ids);
+            
+            }
             
             if(isset($_GET['callback'])){
                 
