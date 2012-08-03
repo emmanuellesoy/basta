@@ -34,13 +34,12 @@ class Welcome extends CI_Controller {
             if(isset($_GET['callback'])){ // Si es una petición cross-domain
                 
                 echo $_GET['callback'].'('.json_encode($data).')';
+            
             } else {
                 
                 echo json_encode($data);
                 
             }
-           
-            echo json_encode($data);
             
         }
         
