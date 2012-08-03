@@ -74,9 +74,10 @@ class Amigos extends CI_Controller {
         }
         
         public function peticion_leida(){
-            $usuario_id = $this->input->post('usuario_id');
             
-            $remitente_usr_id = $this->input->post('remitente_id');
+            $usuario_id = $this->input->post('id_usuario');
+            
+            $remitente_usr_id = $this->input->post('id_remitente');
             
             $aceptar = $this->input->post('aceptar');
             
