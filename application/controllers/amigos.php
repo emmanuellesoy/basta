@@ -29,7 +29,9 @@ class Amigos extends CI_Controller {
             
         }
         
-        public function peticiones($usr_id){
+        public function peticiones(){
+            
+            $usr_id = $this->input->post('id_usuario');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
             
@@ -49,7 +51,11 @@ class Amigos extends CI_Controller {
             
         }
         
-        public function agregar_amigo($destinatario_usr_id, $remitente_usr_id){
+        public function agregar_amigo(){
+            
+            $destinatario_usr_id = $this->imput->post('id_destinatario');
+            
+            $remitente_usr_id = $this->input->post('id_remitente');
         
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
 
@@ -67,7 +73,12 @@ class Amigos extends CI_Controller {
 
         }
         
-        public function peticion_leida($usuario_id, $remitente_usr_id, $aceptar){
+        public function peticion_leida(){
+            $usuario_id = $this->input->post('usuario_id');
+            
+            $remitente_usr_id = $this->input->post('remitente_id');
+            
+            $aceptar = $this->input->post('aceptar');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
             
