@@ -18,7 +18,7 @@ class Usuario extends CI_Model {
             $results[$row['usuario_id']] = $row;
         }
         
-        return json_encode($results);
+        return $results;
     
     }
     
@@ -37,14 +37,16 @@ class Usuario extends CI_Model {
                $results[$row['usuario_id']] = $row;
             
             }
+            
+            $results['mensaje'] = 'ok';
         
         } else {
             
-            $results = 'UPS! El usuario que buscaste no existe.';
+            $results['mensaje'] = 'vacio';
             
         }
         
-            return json_encode($results);
+            return $results;
             
     }
     
@@ -80,7 +82,7 @@ class Usuario extends CI_Model {
         
         if($consulta->num_rows() > 0){
             
-            $registrado = 0;
+            $registrado['mensaje'] = 'usuario_existente';
             
         } else {
             
@@ -88,7 +90,7 @@ class Usuario extends CI_Model {
             
             $consulta = $this->db->query($sql, array($usr, md5($passwd)));
             
-            $registrado = 1;
+            $registrado['mensaje'] = 'ok';
             
         }
         

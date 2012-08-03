@@ -9,27 +9,23 @@ class Amigos extends CI_Controller {
             $this->load->view('welcome_message');
 	}
         
-        public function autenticar_usuario(){
+        public function obtener_amigos(){
             
-            $usr = $this->input->post('usuario');
+            $usr_id = $this->input->post('id_usuario');
             
-            $passwd = $this->input->post('contrasena');
-            
-            $this->load->model('usuario/usuario', 'usr', TRUE);
-            
-            $data = $this->usr->auntenticar($usr, $passwd);
-            
-            return $data;
-            
-        }
-        
-        public function obtener_amigos($usr_id){
-            
-                $this->load->model('usuario/amigos_model', 'amg', TRUE);
+            $this->load->model('usuario/amigos_model', 'amg', TRUE);
                 
-                $amigos = $this->amg->obtener_amigos($usr_id);
+            $data = $this->amg->obtener_amigos($usr_id);
             
-            echo $amigos;
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
         }
         
@@ -39,9 +35,17 @@ class Amigos extends CI_Controller {
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
-            $peticiones = $this->amg->peticiones_amigos($usr_id);
+            $data = $this->amg->peticiones_amigos($usr_id);
             
-            print_r($peticiones);
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
         }
         
@@ -49,7 +53,17 @@ class Amigos extends CI_Controller {
         
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
 
-            $hacer_peticion = $this->amg->hacer_peticion($destinatario_usr_id, $remitente_usr_id);
+            $data = $this->amg->hacer_peticion($destinatario_usr_id, $remitente_usr_id);
+            
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
 
         }
         

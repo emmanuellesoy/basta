@@ -24,13 +24,15 @@ class Amigos_model extends CI_Model {
                 
             }
             
+            $results['mensaje'] = 'ok';
+            
         } else {
             
-            $results = 0;
+            $results['mensaje'] = 'vacio';
             
         }
         
-        return json_encode($results);
+        return $results;
         
     }
     
@@ -52,13 +54,15 @@ class Amigos_model extends CI_Model {
                 
             }
             
+            $results['mensaje'] = 'ok';
+            
         } else {
             
-            $results = 0;
+            $results['mensaje'] = 'vacio';
             
         }
         
-        return json_encode($results);
+        return $results;
         
     }
     
@@ -80,7 +84,7 @@ class Amigos_model extends CI_Model {
                 'estado' => 1
             );
 
-            $this->db->insert('amigos', $data); 
+            $this->db->insert('amigos', $data);
             
         }
 
