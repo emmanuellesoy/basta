@@ -72,7 +72,19 @@ class Amigos_model extends CI_Model {
 
             $this->db->where(array('remitente_usr_id' => $remitente_usr_id, 'destinatario_usr_id' => $destinatario_usr_id));
            
-            $this->db->update('peticiones_amigos', $data);
+            $consulta = $this->db->update('peticiones_amigos', $data);
+            
+            if($consulta){
+                
+                $results['mensaje'] = 'ok'; 
+                
+            } else {
+                
+                $results['mensaje'] = 'error'; 
+                
+            }
+            
+            return $results;
             
         }
         
@@ -84,7 +96,19 @@ class Amigos_model extends CI_Model {
                 'estado' => 1
             );
 
-            $this->db->insert('amigos', $data);
+            $consulta = $this->db->insert('amigos', $data);
+            
+            if($consulta){
+                
+                $results['mensaje'] = 'ok'; 
+                
+            } else {
+                
+                $results['mensaje'] = 'error'; 
+                
+            }
+            
+            return $results;
             
         }
 
@@ -97,7 +121,19 @@ class Amigos_model extends CI_Model {
             'estado' => '0'
         );
 
-        $this->db->insert('peticiones_amigos', $data); 
+        $consulta = $this->db->insert('peticiones_amigos', $data);
+        
+        if($consulta){
+                
+                $results['mensaje'] = 'ok'; 
+                
+            } else {
+                
+                $results['mensaje'] = 'error'; 
+                
+            }
+            
+            return $results;
         
     }
 

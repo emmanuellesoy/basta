@@ -75,19 +75,31 @@ class Amigos extends CI_Controller {
         
         public function peticion_leida(){
             
-            $usuario_id = $this->input->post('id_usuario');
+            //$usuario_id = $this->input->post('id_usuario');
             
-            $remitente_usr_id = $this->input->post('id_remitente');
+            //$remitente_usr_id = $this->input->post('id_remitente');
+            
+            $usuario_id = 'shannonbit';
             
             $aceptar = $this->input->post('aceptar');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
             
-            $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id);
+            $data = $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id);
             
             if($aceptar == 1){
                 
                 $this->amg->agregar_amigo($usuario_id, $remitente_usr_id);
+                
+            }
+            
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
                 
             }
             
