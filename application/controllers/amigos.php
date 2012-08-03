@@ -53,7 +53,7 @@ class Amigos extends CI_Controller {
         
         public function agregar_amigo(){
             
-            $destinatario_usr_id = $this->imput->post('id_destinatario');
+            $destinatario_usr_id = $this->input->post('id_destinatario');
             
             $remitente_usr_id = $this->input->post('id_remitente');
         
@@ -75,11 +75,9 @@ class Amigos extends CI_Controller {
         
         public function peticion_leida(){
             
-            //$usuario_id = $this->input->post('id_usuario');
+            $usuario_id = $this->input->post('id_usuario');
             
-            //$remitente_usr_id = $this->input->post('id_remitente');
-            
-            $usuario_id = 'shannonbit';
+            $remitente_usr_id = $this->input->post('id_remitente');
             
             $aceptar = $this->input->post('aceptar');
             
