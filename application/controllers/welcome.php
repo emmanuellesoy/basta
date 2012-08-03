@@ -23,15 +23,24 @@ class Welcome extends CI_Controller {
         
         public function autenticar(){
             
-            $usr = $this->input->post('usuario');
+            $usr = $this->input->get('usuario');
             
-            $passwd = $this->input->post('contrasena');
+            $passwd = $this->input->get('contrasena');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
             $data = $this->usr->auntenticar($usr, $passwd);
             
-            print_r($data);
+            if(isset($_GET['callback'])){ // Si es una petición cross-domain
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            } else {
+                
+                echo json_encode($data);
+                
+            }
+           
+            echo json_encode($data);
             
         }
         

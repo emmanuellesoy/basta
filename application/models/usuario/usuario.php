@@ -26,6 +26,8 @@ class Usuario extends CI_Model {
         
         $this->db->like('nombre_usuario', $nombre_usuario);
         
+        $this->db->select('usuario_id, nombre_usuario');
+        
         $consulta = $this->db->get('usuarios');
         
         if($consulta->num_rows() > 0){
@@ -54,13 +56,13 @@ class Usuario extends CI_Model {
         
         if ($consulta->num_rows() == 0) {
             
-            $logged = 0;
+            $logged = array('mensaje' => 'ok');
             
             //echo 'You\'r not logged';
                 
         } else {
             
-            $logged = 1;
+            $logged = array('mensaje' => 'vacio');;
             
             //echo 'You\'r logged';
             
