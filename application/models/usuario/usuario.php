@@ -30,7 +30,15 @@ class Usuario extends CI_Model {
         
         foreach($ids as $id){
             
-            $this->db->or_where('usuario_id', $id['usr_id_2']);
+            if(!isset($id['usr_id_2'])){
+                
+                $this->db->or_where('usuario_id', $id['remitente_usr_id']);
+                
+            } else {
+             
+                $this->db->or_where('usuario_id', $id['usr_id_2']);
+                
+            }
             
         }
         
