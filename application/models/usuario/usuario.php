@@ -98,9 +98,15 @@ class Usuario extends CI_Model {
         
         $consulta = $this->db->query($sql, array($usr, md5($passwd)));
         
-        if ($consulta->num_rows() == 0) {
+        if ($consulta->num_rows() > 0) {
             
             $logged = array('mensaje' => 'ok');
+            
+            foreach ($consulta as $row){
+                
+                $logged['usuario_id'] = $row['usuario_id'];
+                
+            }
             
             //echo 'You\'r not logged';
                 
@@ -118,9 +124,9 @@ class Usuario extends CI_Model {
     
     public function registrar_usuario_model($usr, $passwd){
         
-        $this->db->where('nombre_usuario', $usr);
-        
         $this->db->select('nombre_usuario'); 
+        
+        $this->db->where('nombre_usuario', $usr);
         
         $consulta = $this->db->get('usuarios');
         
@@ -137,6 +143,10 @@ class Usuario extends CI_Model {
             $consulta = $this->db->query($sql, array($usr, md5($passwd)));
             
             $registrado['mensaje'] = 'ok';
+            
+            $this->db->select_max('usuario_id');
+            
+            $registrado['usuario_id'] = $this->db->get('usuarios');
             
         } else {
             
