@@ -45,7 +45,7 @@ class Amigos extends CI_Controller {
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
-            $ids = $this->amg->peticiones_amigos(1);
+            $ids = $this->amg->peticiones_amigos($usr_id);
             
             if($ids['mensaje'] == 'ok'){
                 
