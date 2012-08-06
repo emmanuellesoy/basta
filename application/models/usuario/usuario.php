@@ -100,11 +100,11 @@ class Usuario extends CI_Model {
         
         if ($consulta->num_rows() > 0) {
             
-            $logged = array('mensaje' => 'ok');
+            $logged['mensaje'] = 'ok';
             
             foreach ($consulta as $row){
                 
-                $logged['usuario_id'] = $row['usuario_id'];
+                $logged['id_usuario'] = $row['usuario_id'];
                 
             }
             
@@ -112,7 +112,7 @@ class Usuario extends CI_Model {
                 
         } else {
             
-            $logged = array('mensaje' => 'vacio');;
+            $logged['mensaje'] = 'vacio';
             
             //echo 'You\'r logged';
             
@@ -146,7 +146,7 @@ class Usuario extends CI_Model {
             
             $this->db->select_max('usuario_id');
             
-            $registrado['usuario_id'] = $this->db->get('usuarios');
+            $registrado['id_usuario'] = $this->db->get('usuarios');
             
         } else {
             
