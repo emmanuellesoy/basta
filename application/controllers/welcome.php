@@ -30,9 +30,9 @@ class Welcome extends CI_Controller {
             
             $data = $this->usr->auntenticar($usr, $passwd);
             
-            if(isset($_GET['callback'])){
+            if(isset($_POST['callback'])){
                 
-                echo $_GET['callback'].'('.json_encode($data).')';
+                echo $_POST['callback'].'('.json_encode($data).')';
             
             } else {
                 
