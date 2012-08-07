@@ -10,11 +10,19 @@ class Amigos_model extends CI_Model {
     
     }
     
-    public function obtener_amigos($usr_id){
+    public function obtener_amigos_model($usr_id){
         
-        $sql = 'SELECT usr_id_1, usr_id_2 FROM amigos WHERE (usr_id_1 = ? OR usr_id_2 = ?) AND estado = ?';
+        $this->db->select('usr_id_2');
         
-        $consulta = $this->db->query($sql, array($usr_id, $usr_id, 1));
+        $this->db->from('amigos');
+        
+        $this->db->where('usr_id_1', $usr_id);
+        
+        $this->db->where('estado', 1);
+        
+        $consulta = $this->db->get();
+        
+        //$results['query'] = $this->db->last_query();
         
         if($consulta->num_rows() > 0){
             
@@ -24,13 +32,15 @@ class Amigos_model extends CI_Model {
                 
             }
             
+            $results['mensaje'] = 'ok';
+            
         } else {
             
-            $results = 0;
+            $results['mensaje'] = 'vacio';
             
         }
         
-        return json_encode($results);
+        return $results;
         
     }
     
@@ -52,13 +62,15 @@ class Amigos_model extends CI_Model {
                 
             }
             
+            $results['mensaje'] = 'ok';
+            
         } else {
             
-            $results = 0;
+            $results['mensaje'] = 'vacio';
             
         }
         
-        return json_encode($results);
+        return $results;
         
     }
     
@@ -68,32 +80,65 @@ class Amigos_model extends CI_Model {
 
             $this->db->where(array('remitente_usr_id' => $remitente_usr_id, 'destinatario_usr_id' => $destinatario_usr_id));
            
-            $this->db->update('peticiones_amigos', $data);
+            $consulta = $this->db->update('peticiones_amigos', $data);
+            
+            //$results['query'] = $this->db->last_query();
+            
+            if($consulta){
+                
+                $results['mensaje'] = 'ok'; 
+                
+            } else {
+                
+                $results['mensaje'] = 'error'; 
+                
+            }
+            
+            return $results;
             
         }
         
         public function agregar_amigo($usuario_id, $remitente_usr_id){
             
             $data = array(
-                'usr_id_1' => $usuario_id,
-                'usr_id_2' => $remitente_usr_id ,
-                'estado' => 1
+                array('usr_id_1' => $usuario_id, 'usr_id_2' => $remitente_usr_id, 'estado' => 1),
+                array('usr_id_2' => $usuario_id, 'usr_id_1' => $remitente_usr_id, 'estado' => 1)
             );
 
-            $this->db->insert('amigos', $data); 
+            $consulta = $this->db->insert_batch('amigos', $data);
+            
+            if($consulta){
+                
+                $results['mensaje'] = 'ok'; 
+                
+            } else {
+                
+                $results['mensaje'] = 'error'; 
+                
+            }
+            
+            return $results;
             
         }
 
 
         public function hacer_peticion($destinatario_usr_id, $remitente_usr_id){
-        
-        $data = array(
-            'remitente_usr_id' => $remitente_usr_id ,
-            'destinatario_usr_id' => $destinatario_usr_id ,
-            'estado' => '0'
-        );
 
-        $this->db->insert('peticiones_amigos', $data); 
+            $data = array('remitente_usr_id' => $remitente_usr_id, 'destinatario_usr_id' => $destinatario_usr_id, 'estado' => 0);
+
+            $consulta = $this->db->insert('peticiones_amigos', $data);
+        
+            if($consulta){
+                
+                $results['mensaje'] = 'ok'; 
+                
+            } else {
+                
+                $results['mensaje'] = 'error'; 
+                
+            }
+            
+            return $results;
         
     }
 

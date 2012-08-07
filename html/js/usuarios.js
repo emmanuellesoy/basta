@@ -53,6 +53,7 @@ function removeUser(id_usuario) {
 /*=========================================================================================================================*/
 //funciones generales
 function autenticar(){
+
 	
 	var usuario = $('#usuario').val();
 	var pass = $('#contrasena').val();
@@ -108,4 +109,3 @@ function buscar(){
     	$('body').html(data.mensaje);
     });
 }
-

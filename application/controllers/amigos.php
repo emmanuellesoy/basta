@@ -9,59 +9,111 @@ class Amigos extends CI_Controller {
             $this->load->view('welcome_message');
 	}
         
-        public function autenticar_usuario(){
+        public function obtener_amigos(){
             
-            $usr = $this->input->post('usuario');
+            $usr_id = $this->input->get('id_usuario');
             
-            $passwd = $this->input->post('contrasena');
-            
-            $this->load->model('usuario/usuario', 'usr', TRUE);
-            
-            $data = $this->usr->auntenticar($usr, $passwd);
-            
-            return $data;
-            
-        }
-        
-        public function obtener_amigos($usr_id){
-            
-                $this->load->model('usuario/amigos_model', 'amg', TRUE);
+            $this->load->model('usuario/amigos_model', 'amg', TRUE);
                 
-                $amigos = $this->amg->obtener_amigos($usr_id);
+            $ids = $this->amg->obtener_amigos_model($usr_id);
             
-            echo $amigos;
+            if($ids['mensaje'] == 'ok'){
+                
+                $this->load->model('usuario/usuario', 'usr', TRUE);
+            
+                $data = $this->usr->get_users_by_id($ids);
+            
+            }
+            
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
         }
         
-        public function peticiones($usr_id){
+        public function peticiones(){
+            
+            $usr_id = $this->input->get('id_usuario');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
-            $peticiones = $this->amg->peticiones_amigos($usr_id);
+            $ids = $this->amg->peticiones_amigos($usr_id);
             
-            print_r($peticiones);
+            if($ids['mensaje'] == 'ok'){
+                
+                $this->load->model('usuario/usuario', 'usr', TRUE);
+            
+                $data = $this->usr->get_users_by_id($ids);
+            
+            }
+            
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
         }
         
-        public function agregar_amigo($destinatario_usr_id, $remitente_usr_id){
+        public function agregar_amigo(){
+            
+            $destinatario_usr_id = $this->input->get('id_destinatario');
+            
+            $remitente_usr_id = $this->input->get('id_remitente');
         
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
 
-            $hacer_peticion = $this->amg->hacer_peticion($destinatario_usr_id, $remitente_usr_id);
+            $data = $this->amg->hacer_peticion($destinatario_usr_id, $remitente_usr_id);
+            
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
 
         }
         
-        public function peticion_leida($usuario_id, $remitente_usr_id, $aceptar){
+        public function peticion_leida(){
+            
+            $usuario_id = $this->input->get('id_destinatario');
+            
+            $remitente_usr_id = $this->input->get('id_remitente');
+            
+            $aceptar = $this->input->get('aceptar');
             
             $this->load->model('usuario/amigos_model', 'amg', TRUE);
             
-            $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id);
+            $data = $this->amg->peticiones_leidas($usuario_id, $remitente_usr_id, $aceptar);
             
             if($aceptar == 1){
                 
                 $this->amg->agregar_amigo($usuario_id, $remitente_usr_id);
+                
+            }
+            
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
                 
             }
             

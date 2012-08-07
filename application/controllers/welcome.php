@@ -6,52 +6,81 @@ class Welcome extends CI_Controller {
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
-            $usr = 'brass3a4';
-            
-            $passwd = 'hola';
-            
-            /* @var $data JSON */
             $data = $this->usr->get_users();
             
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
             
-            print_r($data);
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
-            //$data = $this->usr->registrar_usuario($usr, $passwd);
-
-            //$this->load->view('welcome_message');
 	}
         
         public function autenticar(){
             
-            $usr = $this->input->post('usuario');
+            $usr = $this->input->get('usuario');
             
-            $passwd = $this->input->post('contrasena');
+            $passwd = $this->input->get('contrasena');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
             $data = $this->usr->auntenticar($usr, $passwd);
             
-            print_r($data);
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
         }
         
-        public function registrar_usuario($usr, $passwd){
+        public function registrar_usuario(){
+            
+            $usr = $this->input->get('usuario');
+            
+            $passwd = $this->input->get('contrasena');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
-            $data = $this->usr->registrar_usuario($usr, $passwd);
+            $data = $this->usr->registrar_usuario_model($usr, $passwd);
             
-            print_r($data);
+            if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
         }
         
-        public function buscar_usuario($nombre_usuario){
+        public function buscar_usuario(){
+            
+            $nombre_usuario = $this->input->get('nombre_usuario');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
             $data = $this->usr->get_user($nombre_usuario);
             
-            print_r($data);
+             if(isset($_GET['callback'])){
+                
+                echo $_GET['callback'].'('.json_encode($data).')';
+            
+            } else {
+                
+                echo json_encode($data);
+                
+            }
             
         }
                 
