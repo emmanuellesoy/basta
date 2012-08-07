@@ -94,15 +94,21 @@ class Usuario extends CI_Model {
     
     public function auntenticar($usr, $passwd){
         
-        $sql = 'SELECT usuario_id FROM usuarios WHERE nombre_usuario = ? AND passwd = ? ';
+        $this->db->select('usuario_id');
         
-        $consulta = $this->db->query($sql, array($usr, md5($passwd)));
+        $this->db->from('usuarios');
+        
+        $this->db->where('nombre_usuario', $usr);
+        
+        $this->db->where('passwd', $passwd);
+        
+        $consulta = $this->db->get();
         
         if ($consulta->num_rows() > 0) {
             
             $logged['mensaje'] = 'ok';
             
-            foreach ($consulta as $row){
+            foreach ($consulta->result_array() as $row){
                 
                 $logged['id_usuario'] = $row['usuario_id'];
                 
