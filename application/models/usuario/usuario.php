@@ -98,7 +98,7 @@ class Usuario extends CI_Model {
         
         $this->db->from('usuarios');
         
-        $this->db->where('nombre_usuario', $usr);
+        $this->db->where('nombre_usuario', md5($usr));
         
         $this->db->where('passwd', $passwd);
         
@@ -123,6 +123,8 @@ class Usuario extends CI_Model {
             //echo 'You\'r logged';
             
         }
+        
+        //$logged = $this->db->last_query();
         
         return $logged;
         
