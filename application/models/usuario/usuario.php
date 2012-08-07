@@ -152,7 +152,7 @@ class Usuario extends CI_Model {
             
             foreach($consulta->result_array() as $row){
                 
-                $registrado['id_usuario'] = $row;
+                $registrado['id_usuario'] = $row['usuario_id'];
                 
             }
             
