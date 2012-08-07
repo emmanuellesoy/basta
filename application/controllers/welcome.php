@@ -22,9 +22,9 @@ class Welcome extends CI_Controller {
         
         public function autenticar(){
             
-            $usr = $this->input->get('usuario');
+            $usr = $this->input->post('usuario');
             
-            $passwd = $this->input->get('contrasena');
+            $passwd = $this->input->post('contrasena');
             
             $this->load->model('usuario/usuario', 'usr', TRUE);
             
