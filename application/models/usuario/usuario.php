@@ -138,13 +138,7 @@ class Usuario extends CI_Model {
         
         $consulta = $this->db->get('usuarios');
         
-        foreach ($consulta->result_array() as $row) {
-
-               $registrado[] = $row;
-            
-            }
-        
-        if($consulta->num_rows() == 0){
+        if($consulta->num_rows() < 1){
             
             $sql = 'INSERT INTO usuarios (nombre_usuario, passwd) VALUES (?, ?)';
             
@@ -154,7 +148,13 @@ class Usuario extends CI_Model {
             
             $this->db->select_max('usuario_id');
             
-            $registrado['id_usuario'] = $this->db->get('usuarios');
+            $consulta = $this->db->get('usuarios');
+            
+            foreach($consulta->result_array() as $row){
+                
+                $registrado['id_usuario'] = $row;
+                
+            }
             
         } else {
             
