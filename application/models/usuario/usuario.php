@@ -98,9 +98,9 @@ class Usuario extends CI_Model {
         
         $this->db->from('usuarios');
         
-        $this->db->where('nombre_usuario', md5($usr));
+        $this->db->where('nombre_usuario', $usr);
         
-        $this->db->where('passwd', $passwd);
+        $this->db->where('passwd', md5($passwd));
         
         $consulta = $this->db->get();
         
