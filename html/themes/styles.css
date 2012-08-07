@@ -22,6 +22,17 @@ src: url('../fonts/Bangers.ttf');
 .ui-icon-flechaIzquierda{
     background-image: url("../img/flechaIzquierda.svg");
 }
+.ui-icon-lupa{
+    background-image: url("../img/lupa.svg");
+}
+#agregar_amigo{
+	padding-left: 22%;
+}
+#cajitab{
+	width: 20px;
+	padding-left: 5%;
+	padding-top: 1%;
+}
 .ui-icon-paloma{
     background-image: url("../img/paloma.svg");
     background-size: 36px 36px;

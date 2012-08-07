@@ -1,0 +1,68 @@
+<html>
+<head>
+<script type="text/javascript" src="usuarios.js"></script>
+<script type="text/javascript">
+function init() {
+	db = openDatabase("DB_local2", "0.1", "Database_local2", 200000);
+    if (db) {
+    	// Database opened
+		db.transaction( function(tx) {
+			tx.executeSql("CREATE TABLE IF NOT EXISTS usuario(id_usuario integer primary key)")
+		});
+	}
+	listUsers();
+}
+
+function showUsers(users) {
+	var place = document.getElementById("id_usr");
+	if (place.getElementsByTagName("ul").length > 0 )
+		place.removeChild(place.getElementsByTagName("ul")[0]);
+		var list = document.createElement("ul");
+	for ( var i = 0; i < users.length; i++) {
+		var item = document.createElement("li");
+		item.innerHTML += "<b>userId:</b>" + users[i][0] +
+		"<button onclick='removeUser("+ users[i][0]+")'>Remove</button>";
+		list.appendChild(item);
+	}
+	place.appendChild(list);
+}
+
+function listUsers() {
+	db.transaction( function(tx) {
+		tx.executeSql("SELECT * FROM usuario", [],
+		function(tx, result){
+			var output = [];
+			for(var i=0; i < result.rows.length; i++) {
+				output.push([result.rows.item(i)['id_usuario']]);
+			}
+			showUsers(output);
+		});
+	});
+}
+
+function addUser(id_usuario) {
+	db.transaction( function(tx) {
+		tx.executeSql("INSERT INTO usuario(id_usuario) VALUES(?)", [id_usuario]);
+	});
+	listUsers();
+}
+
+function removeUser(id_usuario) {
+	db.transaction(function(tx) {
+		tx.executeSql("DELETE FROM usuario WHERE id_usuario=?",[id_usuario], listUsers);
+	})
+}
+</script>
+</head>
+<body onload="init()">
+<div id="id_usr">
+	Usuarios en local
+</div>
+<div id="newuser">
+	Crear nuevo usuario<br/>
+	id: <input type="text" id="username"/><br/>
+	<button onclick="addUser(username.value)">Add User</button>
+</div>
+</body>
+
+</html>

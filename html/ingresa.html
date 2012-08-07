@@ -11,7 +11,7 @@
         <script src="js/jquery.mobile-1.1.0.min.js"></script>
         <script src="js/usuarios.js"></script>
 </head> 
-<body> 
+<body onload="init();"> 
 
 <div data-role="page" data-theme="a">
 
@@ -19,12 +19,14 @@
 		<h1>BASTA!</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">
+	<div data-role="content" id="contenido">
+		<center><div id="error_message"></div></center>
             <form action="?" method="post" id="autenticar">
-                <input type="text" name="usuario" id="usuario" placeholder="USUARIO" autofocus />
+                <input type="text" name="usuario" id="usuario" placeholder="USUARIO" />
                 <input type="password" name="contrasena" id="contrasena" placeholder="CONTRASEÑA" />
                 <input type="button" id="boton" onclick="autenticar()" value="INICIAR SESIÓN" />
             </form>
+            <div id="id_usr">id's</div>
             <hr>
             <form action="?" method="post">
                 <center>

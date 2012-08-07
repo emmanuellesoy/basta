@@ -1,58 +1,55 @@
-$(document).ready(function(){
-    
-});
-
 function agregar(){
 	
 	var id_d = 1; //id del usuario destinatario
-	
 	var id_r = 7; //id del usuario remitente
-	
-	alert(id_d+id_r);
-	
-	$.ajax({
-            url: "http://turing.izt.uam.mx/basta/index.php/amigos/agregar_amigos/"+id_d+"/"+id_r,
-            success: function(data){
-                var json = jQuery.parseJSON(data);
-                //alert(json);
-                //$('p').html(json.nombre);
-            }
+
+	var uri = 'http://turing.izt.uam.mx/basta/index.php/amigos/agregar_amigos?callback=?';
+	$.getJSON(uri,{id_destinatario: id_d,id_remitente: id_r},
+    function(data){
+    //alert(data); // data es el json cargado por jsonp
+    	$('body').html(data.mensaje);
     });
-	
 }
+
+$(document).bind('pagebeforecreate', function(){	
+		obtener();
+		peticiones();
+});
 
 function obtener(){
 	
 	var id = 1; // Id del usuario local.
+	var uri = 'http://turing.izt.uam.mx/basta/index.php/amigos/obtener_amigos?callback=?';
 	
-	alert(id);
-	
-	$.ajax({
-            url: "http://turing.izt.uam.mx/basta/index.php/amigos/obtener_amigos/"+id,
-            success: function(data){
-                var json = jQuery.parseJSON(data);
-                //alert(json);
-                //$('p').html(json.nombre);
-            }
-    });
-	
-}
+	$.getJSON(uri,{id_usuario:id},
+    function(data){
 
+		$.each(data, function(index, value){
+			if(index != 'mensaje'){
+            	//$('#lista_amigos').prepend(index+':'+value.usuario_id+'-->'+value.nombre_usuario+'<br />');
+            	$('#lista_amigos').prepend('<li data-icon="flechaDerecha"><a href="?">'+value.nombre_usuario+'</a></li>');
+        	}
+		});    
+
+	});
+}
+	
 function peticiones(){
 	
 	var id = 2; //id del usuario local
+	var uri = 'http://turing.izt.uam.mx/basta/index.php/amigos/peticiones?callback=?';
 	
-	alert(id);
-	
-	$.ajax({
-            url: "http://turing.izt.uam.mx/basta/index.php/amigos/peticiones/"+id,
-            success: function(data){
-                var json = jQuery.parseJSON(data);
-                //alert(json);
-                //$('p').html(json.nombre);
-            }
-    });
-	
+	$.getJSON(uri,{id_usuario:id},
+    function(data){
+
+		$.each(data, function(index, value){
+			if(index != 'mensaje'){
+            	//$('#lista_amigos').prepend(index+':'+value.usuario_id+'-->'+value.nombre_usuario+'<br />');
+            	$('#peticiones').prepend('<li data-icon="flechaDerecha"><a href="?">'+value.nombre_usuario+'</a></li>');
+        	}
+		});    
+
+	});   
 }
 
 function peticion_leida(){
@@ -63,15 +60,10 @@ function peticion_leida(){
 	
 	var Responder_peticion = 1; //0 sino lo acepto1 si lo acepto
 	
-	alert(id_d+id_r);
-	
-	$.ajax({
-            url: "http://turing.izt.uam.mx/basta/index.php/amigos/peticion_leida/"+id_d+"/"+id_r+"/"+Responder_peticion,
-            success: function(data){
-                var json = jQuery.parseJSON(data);
-                //alert(json);
-                //$('p').html(json.nombre);
-            }
-    });
-	
+	var uri = 'http://turing.izt.uam.mx/basta/index.php/amigos/peticion_leida?callback=?';
+	$.getJSON(uri,{id_destinatario: id_d,id_remitente: id_r,aceptar:Responder_peticion},
+    function(data){
+    //alert(data); // data es el json cargado por jsonp
+    	$('body').html(data.mensaje);
+    });		
 }

@@ -8,12 +8,13 @@
         <link rel="stylesheet" href="themes/jquery.mobile.structure-1.1.0.min.css" />
         <link rel="stylesheet" href="themes/styles.css" />
         <script src="js/jquery-1.7.2.min.js"></script>
+        <script src="js/amigos.js"></script>
         <script src="js/jquery.mobile-1.1.0.min.js"></script>
         <script src="js/usuarios.js"></script>
 </head> 
 <body> 
 
-<div data-role="page" data-theme="a">
+<div data-role="page" data-theme="a" id="pagina_amigos">
 
 	<div data-role="header" data-theme="a" data-position="inline">
             <a href="menuPrincipal.html" data-icon="flechaIzquierda" class="principal_btn">PRINCIPAL</a>
@@ -23,20 +24,19 @@
 	<div data-role="content" data-theme="a">
             <div data-role="collapsible" data-collapsed="false" data-theme="a">
                 <h2>ALGUIEN QUIERE SER TU AMIGO:</h2>
-                <ul data-role="listview" data-theme="a" data-inset="true">
-                    <li data-icon="flechaDerecha"><a href="?">USUARIO NUEVO 1</a></li>
-                    <li data-icon="flechaDerecha"><a href="?">USUARIO NUEVO 2</a></li>
+                <ul data-role="listview" data-theme="a" data-inset="true" id="peticiones">
+                  
                 </ul>
             </div>
             <hr>
             <form action="form.php" method="post" data-theme="a">
                 <input type="text" name="agregar_amigo" id="agregar_amigo" placeholder="AGREGAR USUARIO" />
-            </form> 
-            <ul data-role="listview" data-theme="a" data-inset="true">
-                <li data-icon="flechaDerecha"><a href="?">USUARIO 1</a></li>
-                <li data-icon="flechaDerecha"><a href="?">USUARIO 2</a></li>
-                <li data-icon="flechaDerecha"><a href="?">USUARIO 3</a></li>
-                <li data-icon="flechaDerecha"><a href="?">USUARIO 4</a></li>
+            </form>
+            <div id="lista_am">
+            	
+            </div>
+            <ul data-role="listview" data-theme="a" data-inset="true" id="lista_amigos">
+                
             </ul>
 	</div><!-- /content -->
 

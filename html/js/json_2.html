@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="jquery-1.7.2.min" ></script>
+        <script type="text/javascript">
+            function buscar(){
+                var uri = 'http://turing.izt.uam.mx/basta/index.php/amigos/obtener_amigos?callback=?';
+                //var uri = 'http://turing.izt.uam.mx?callback=?';
+                $.getJSON(uri,{id_usuario: 1},
+                function(data){
+                    $.each(data, function(index, value) { 
+                        if(index != 'mensaje'){
+                            $('body').append(index+':'+value.usuario_id+'-->'+value.nombre_usuario+'<br />');
+                        }
+                    });
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <input type="button" onclick="buscar()" value="buscar"/>
+            <p></p>
+        </div>
+    </body>
+</html>

@@ -11,21 +11,22 @@
         <script src="js/jquery.mobile-1.1.0.min.js"></script>
         <script src="js/usuarios.js"></script>
 </head> 
-<body> 
+<body onload="init();"> 
 
 <div data-role="page" data-theme="a">
 
 	<div data-role="header">
             <h1>Basta!</h1>
 	</div><!-- /header -->
-
+	<center><div id="mensaje_error"></div></center>
+	<div id="id_usr">id's</div>
 	<div data-role="content">	
             <div data-role="fieldcontain" class="ui-hide-label">
                 <form action="?" method="post" id="registrar_form">
                     <input type="text" name="usuario" id="usuario" placeholder="USUARIO" autofocus />
                     <input type="password" name="contrasena" id="contrasena" placeholder="CONTRASEÑA"/>
                     <input type="password" name="c_contrasena" id="c_contrasena" placeholder="CONFIRMAR CONTRASEÑA"/>
-                    <input type="button" id="boton" onclick="registrar()" />
+                    <input type="button" id="boton" onclick="registrar()" value="REGISTRAR" />
                 </form>
             </div>
 	</div><!-- /content -->
